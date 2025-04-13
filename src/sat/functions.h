@@ -22,4 +22,19 @@ void add_literal(Clause*, Literal);
 // @param clause A pointer to the clause to be added.
 void add_clause(CNF&, Clause*);
 
+// Checks if a clause is an unit clause.
+// @param clause A pointer to a clause.
+// @return true, if it's a unit clause; false, otherwise.
+bool unit_clause(Clause*);
+
+// Checks if a formula is an empty formula.
+// @param formula The formula to be checked.
+bool empty_formula(CNF&);
+
+// Checks if a literal is within a clause.
+// @param clause The clause to find the literal.
+// @param literal The literal to find.
+// @returns A iterator to the literal, if it was found; clause.end(), otherwise.
+Clause::iterator in_clause(Clause*, Literal);
+
 #endif
