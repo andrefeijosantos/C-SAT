@@ -12,7 +12,7 @@
 
 
 // Converts a formula to string.
-std::string clause2str(Clause& clause) {
+std::string to_string(Clause& clause) {
     int lcnt = 0;
 
     std::string str = "(";
@@ -28,12 +28,12 @@ std::string clause2str(Clause& clause) {
 }
 
 // Converts a clause to string.
-std::string cnf2str(CNF& formula) {
+std::string to_string(CNF& formula) {
     int ccnt = 0;
     
     std::string str = "(";
     for(Clause* clause : formula) {
-        str += clause2str(*clause);
+        str += to_string(*clause);
         if(++ccnt < formula.size())
             str += " ^ ";
     }

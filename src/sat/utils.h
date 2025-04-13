@@ -16,11 +16,11 @@
 // Converts a formula to string.
 // @param formula The formula to be converted.
 // @returns The string representation of the formula.
-std::string cnf2str(CNF& formula);
+std::string to_string(CNF& formula);
 
 // Converts a clause to string.
 // @param clause The clause to be converted.
 // @returns The string representation of the clause.
-std::string clause2str(Clause& clause);
+std::string to_string(Clause& clause);
 
 #endif
