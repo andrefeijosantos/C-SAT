@@ -13,13 +13,13 @@
 
 
 // Adds a new literal to a clause.
-// @param clause The clause where the literal will be inserted.
+// @param clause A pointer to the clause where the literal will be inserted.
 // @param literal The literal to add.
 void add_literal(Clause*, Literal);
 
 // Adds a new clause to the formula.
 // @param formula The formula where the new clause will be inserted.
-// @return A pointer to the new clause.
+// @param clause A pointer to the clause to be added.
 void add_clause(CNF&, Clause*);
 
 #endif
