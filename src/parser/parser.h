@@ -21,7 +21,7 @@ class CNFParser {
         // 
         // @param file Path to the .cnf input file.
         // @return CNF The parsed formula as an internal CNF object.
-        CNF parse(const char* file);
+        CNF* parse(const char* file);
 };
 
 #endif

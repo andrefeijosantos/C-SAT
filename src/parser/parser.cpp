@@ -13,16 +13,12 @@
 
 
 // @brief Parse a .cnf file using DIMACS' syntax.
-CNF CNFParser::parse(const char* file) {
+CNF* CNFParser::parse(const char* file) {
     std::ifstream fin(file);
 
-    if(!fin) {
-        std::cerr << "\033[31m[ERROR]\033[0m Failed to open input file: \"" << file << "\"" << std::endl;
-        std::cerr << "Please check that the path is correct and the file exists." << std::endl;
-        std::cerr << "Aborting parser.\n" << std::endl;
-        return {Clause()}; // unsat CNF.
-    }
-
+    // Return nullptr if file cannot be opened.
+    if(!fin) return nullptr; 
+    
     std::string h1, h2; 
     int num_lits, num_clauses; 
 
@@ -31,7 +27,7 @@ CNF CNFParser::parse(const char* file) {
 
     // Clause parsing.
     Literal literal;
-    CNF cnf;
+    CNF* cnf = new CNF();
 
     // Read each clause.
     for(int c = 0; c < num_clauses; c++) {
@@ -43,7 +39,7 @@ CNF CNFParser::parse(const char* file) {
             if(literal == 0) break;
             add_literal(clause, literal);
         }
-        add_clause(cnf, clause);
+        add_clause(*cnf, clause);
     }
 
     return cnf;
