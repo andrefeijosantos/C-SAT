@@ -19,7 +19,7 @@ std::string to_string(const Clause& clause) {
     std::string str = "(";
     for(Literal literal : clause) {
         if(literal < 0) str += "~";
-        str += "p" + std::to_string(afirm(literal));
+        str += "p" + std::to_string(affirm(literal));
 
         if(++lcnt < clause.size())
             str += " v ";
