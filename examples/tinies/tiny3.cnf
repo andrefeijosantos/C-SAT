@@ -1,0 +1,10 @@
+c FILE: tiny1.cnf
+c
+c SOURCE: André dos Santos (andre.santos1@ufv.br)
+c
+c DESCRIPTION: Handcrafted instance designed for quick testing of SAT solvers.
+c FORMULA: 
+c
+c NOTE: Trivially Satisfiable
+c
+p cnf 0 0
