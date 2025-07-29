@@ -84,7 +84,7 @@ int main(int argc, char* argv[]) {
 
     // Initialize the solver and solve the CNF formula using the specified algorithm.
     CSATSolver solver;
-    std::cout << "[3/4] Starting solving with " << algorithm_str << " algorithm..." << std::endl;
+    std::cout << "[3/4] Solving with " << algorithm_str << " algorithm..." << std::endl;
 
     auto start_time = std::chrono::high_resolution_clock::now();
 
