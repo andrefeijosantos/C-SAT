@@ -43,24 +43,18 @@ Status CSATSolver::dpll(CNF& cnf) {
     // Pure literal elimination.
     std::set<Literal> literals;
     for (const Clause& clause : cnf)
-        for (const Literal& literal : clause)
+        for (Literal literal : clause)
             literals.insert(literal);
 
-    for (Literal literal : literals)
-        if (is_pure_literal(cnf, literal)) {
+    // Process each literal once
+    for (Literal literal : literals) 
+        if (is_pure_literal(cnf, literal)) 
             for (auto it = cnf.begin(); it != cnf.end(); ) {
                 Clause& clause = *it;
-                
-                if (in_clause(clause, literal) != clause.end()) {
-                    if (unit_clause(clause)) it = cnf.erase(it);
-                    else {
-                        clause.erase(literal);
-                        it++;
-                    }
-                } else it++;
+                if (in_clause(clause, literal) != clause.end())
+                    it = cnf.erase(it);
+                else it++;
             }
-            literals.erase(literal);
-        }
 
 
     // Stopping conditions.
