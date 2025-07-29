@@ -20,6 +20,8 @@
 // ----------------------------------------------------------------------------------------
 
 #include <iostream>
+#include <chrono>
+
 #include "csat.h"
 
 // Version information
@@ -50,6 +52,7 @@ int main(int argc, char* argv[]) {
     std::string algorithm_str;
     if(argc < 3) {
         std::cerr << "[ " << YELLOW("WARNING") << " ] No algorithm specified. Using default (DPLL)." << std::endl;
+        algorithm_str = "DPLL";
     } else {
         if (std::string(argv[2]) == "DPLL") {
             algorithm = Algorithm::DPLL;
@@ -83,13 +86,21 @@ int main(int argc, char* argv[]) {
     CSATSolver solver;
     std::cout << "[3/4] Starting solving with " << algorithm_str << " algorithm..." << std::endl;
 
+    auto start_time = std::chrono::high_resolution_clock::now();
+
     Status result = solver.solve(*formula, algorithm);
+
+    auto end_time = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
+
 
     // Print the result of the solving process.
     std::cout << "[4/4] Solving completed. Result: ";
     if (result == sat) 
         std::cout << GREEN("SATISFIABLE") << std::endl; 
     else std::cout << RED("UNSATISFIABLE") << std::endl;
+
+    std::cout << "      Execution time: " << duration.count() << " ms" << std::endl; // ⬅️ Log time
 
     // Free the allocated CNF object to gracefully finish the program.
     delete formula; 
