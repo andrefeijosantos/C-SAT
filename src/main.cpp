@@ -11,7 +11,7 @@
 //
 // Usage:
 //   g++ -O2 main.cpp solver/utils.cpp solver/dpll.cpp solver/cdcl.cpp sat/types.cpp sat/utils.cpp parser/parser.cpp
-//   ./csat <input_file.cnf> [algorithm]
+//   ./csat <input_file.cnf> <algorithm (DPLL/CDCL)>
 //
 // author: @andrefeijosantos
 // Repository: https://github.com/andrefeijosantos/C-SAT
@@ -100,7 +100,7 @@ int main(int argc, char* argv[]) {
         std::cout << GREEN("SATISFIABLE") << std::endl; 
     else std::cout << RED("UNSATISFIABLE") << std::endl;
 
-    std::cout << "      Execution time: " << duration.count() << " ms" << std::endl; // ⬅️ Log time
+    std::cout << "      Execution time: " << duration.count() << " ms" << std::endl;
 
     // Free the allocated CNF object to gracefully finish the program.
     delete formula; 
