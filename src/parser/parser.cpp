@@ -22,8 +22,12 @@ CNF* CNFParser::parse(const char* file) {
     std::string h1, h2; 
     int num_lits, num_clauses; 
 
+    // Skip comments in the header.
+    while(fin >> h1 && h1[0] == 'c')
+        std::getline(fin, h2);
+
     // Header parsing.
-    fin >> h1 >> h2 >> num_lits >> num_clauses;
+    fin >> h2 >> num_lits >> num_clauses;
 
     // Clause parsing.
     Literal literal;
